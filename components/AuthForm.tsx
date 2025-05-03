@@ -53,7 +53,7 @@ const AuthForm = <T extends FieldValues> ({
       <h1 className='text-2xl font-semibold text-white '>
         {isSignIn ? 'Welcome back to BookWise' : 'Create your library account'}
       </h1>
-      <p className='text-light-100'>
+      <p className='text-light-100 mt-6 mb-4'>
         {isSignIn ? 'Access the best books and resources' : 'Join the community of book lovers'}
       </p>
       <Form {...form}>
@@ -69,7 +69,9 @@ const AuthForm = <T extends FieldValues> ({
             <FormLabel className='capitalize'>{FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}</FormLabel>
             <FormControl>
               {field.name === 'universityCard' ? (
-                <ImageUpload />) : (
+                <ImageUpload 
+                  onFileChange = {field.onChange}
+                />) : (
                   <Input required type= {
                    FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]} {...field}
                    className='form-input'
@@ -90,7 +92,7 @@ const AuthForm = <T extends FieldValues> ({
       </Button>
     </form>
   </Form>
-  <p className='text-center text-base font-medium'>
+  <p className='text-center text-base font-medium mt-5'>
         {isSignIn ? 'Don\'t have an account? ' : 'Already have an account? '}
         <Link href={isSignIn ? '/sign-up' : '/sign-in'} className='text-light-100 hover:text-light-200'>
           {isSignIn ? 'Create an account' : 'Sign in'}
