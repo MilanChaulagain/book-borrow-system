@@ -23,6 +23,10 @@ const bebasNeue = localFont({
 export const metadata: Metadata = {
   title: "BookWise",
   description: "BookWise is a book borrowing platform",
+  icons: {
+    icon: "/favicon.ico",
+
+  },
 };
 
 const RootLayout = ({
