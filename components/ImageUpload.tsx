@@ -4,7 +4,6 @@ import config from "@/lib/config";
 import { IKImage, ImageKitProvider, IKUpload, IKVideo } from "imagekitio-next";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { set } from "react-hook-form";
 import { toast } from "sonner";
 
 const {env: {imagekit: {publicKey, urlEndpoint}}} = config;
@@ -30,10 +29,10 @@ const authenticator = async()=> {
     }
 }
 
-const ImageUpload = ({onFileChange}: {onFileChange: (filepath: string) => void}) => {
+const ImageUpload = ({onFileChange}: {onFileChange: (filePath: string) => void}) => {
 
     const ikUploadRef = useRef(null);
-    const [file, setFile] = useState<{filepath: string } | null>(null);
+    const [file, setFile] = useState<{filePath: string } | null>(null);
 
     const onError = (error: any)=> {
         setFile(null);
@@ -76,12 +75,12 @@ const ImageUpload = ({onFileChange}: {onFileChange: (filepath: string) => void})
                 className="object-contain"
             />
             <p className="text-base text-light-100">Upload a file</p>
-            {file && <p className="upload-filename">{file.filepath}</p>}
+            {file && <p className="upload-filename">{file.filePath}</p>}
         </button>
         {file && (
             <IKImage 
-                alt={file.filepath}
-                path={file.filepath}
+                alt={file.filePath}
+                path={file.filePath}
                 width={500}
                 height={300}
             />
